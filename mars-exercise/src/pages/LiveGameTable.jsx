@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import LiveGameTableRow from '../components/LiveGameTableRow';
 
 const styles = theme => ({
     root: {
@@ -21,36 +20,22 @@ const styles = theme => ({
 
 function LiveGameTable(props) {
     const { classes } = props;
+    const titles = props.data;
+    console.log(titles);
 
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
-          <TableRow>
-            <TableCell numeric>Number</TableCell>
-            <TableCell numeric>Type</TableCell>
-            <TableCell>Question</TableCell>
-            <TableCell>Answer 1</TableCell>
-            <TableCell>Answer 2</TableCell>
-            <TableCell>Answer 3</TableCell>
-            <TableCell>Answer 4</TableCell>
-          </TableRow>
+          <LiveGameTableRow value={
+            titles
+          } />
         </TableHead>
         <TableBody>
           {props.data.map(row => {
-            return (
-              <TableRow key={row.id}>
-                <TableCell component="th" scope="row" numeric>
-                  {row.number}
-                </TableCell>
-                <TableCell numeric>{row.type}</TableCell>
-                <TableCell>{row.question}</TableCell>
-                <TableCell>{row.answer1}</TableCell>
-                <TableCell>{row.answer2}</TableCell>
-                <TableCell>{row.answer3}</TableCell>
-                <TableCell>{row.answer4}</TableCell>
-              </TableRow>
-            );
+            return(
+              <LiveGameTableRow value={row} />
+            )
           })}
         </TableBody>
       </Table>
